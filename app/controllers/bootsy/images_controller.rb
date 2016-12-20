@@ -43,6 +43,8 @@ module Bootsy
 
     def set_gallery
       @gallery = ImageGallery.find(params[:image_gallery_id])
+    rescue Mongoid::Errors::DocumentNotFound => e
+      render :file => "#{Rails.root}/public/404.html", :layout => false
     end
 
     # Private: Returns the String markup to render
